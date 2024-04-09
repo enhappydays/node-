@@ -13,6 +13,16 @@ function getHtmlFile(filePath){
         })
     })
 }
+// 读取静态资源
+function getimageFile(filePath){
+    return new Promise((resolve,reject)=>{
+        fs.readFile(path.join(__dirname,filePath),(err,data)=>{
+            if (err) return reject(err)
+            console.log(data);
+           resolve(data)      
+        })
+    })
+}
 // 3.创建中间件
 app.use(async(ctx)=>{
     // get解析
@@ -20,7 +30,10 @@ app.use(async(ctx)=>{
     console.log('=====',ctx.query);
     console.log('=====',ctx.request.querystring);
    
-    ctx.response.body=await getHtmlFile('./test.html')
+    // ctx.response.body=await getHtmlFile('./test.html')
+    ctx.set('Content-type','image/jpeg')
+    ctx.response.body=await getimageFile('./static/1712676580221.png')
+    // ctx.response.body=''
     // post
     let paramsStr=''
     // 1监听原生nnodejs request对象中的data
