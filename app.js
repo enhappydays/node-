@@ -1,15 +1,26 @@
 const Koa=require('koa')
-
+const path=require('path')
 const app=new Koa()
-
+// 导入文件读取
+const fs=require('fs')
+// 封装读html的函数
+function getHtmlFile(filePath){
+    return new Promise((resolve,reject)=>{
+        fs.readFile(path.join(__dirname,filePath),(err,data)=>{
+            if (err) return reject(err)
+            console.log(data.toString());
+           resolve(data.toString())      
+        })
+    })
+}
 // 3.创建中间件
-app.use(ctx=>{
+app.use(async(ctx)=>{
     // get解析
     console.log('=====',ctx.request.query);
     console.log('=====',ctx.query);
     console.log('=====',ctx.request.querystring);
-
-    ctx.response.body='hellow world'
+   
+    ctx.response.body=await getHtmlFile('./test.html')
     // post
     let paramsStr=''
     // 1监听原生nnodejs request对象中的data
