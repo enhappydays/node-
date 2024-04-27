@@ -37,7 +37,7 @@ app.use(koaError({
         if (obj.code==='INVALID_PARAM') {
             return {
                 code:40022,
-                message:'存在不合法参数！！！'
+                message:'存在不合法参数！！'
             }
         }
         return {
