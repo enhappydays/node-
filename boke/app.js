@@ -7,6 +7,9 @@ const koaStatic=require('koa-static') //导入处理静态资源-托管中间件
 const koaCors=require('@koa/cors') //处理跨域问题
 const koaError=require('koa-json-error')//统一错误处理和错误输出
 const koaParameter=require('koa-parameter') //导入参数校验的中间件
+const koaJwt=require('koa-jwt') //处理token解析的中间件（解析请求头）
+const config=require('./config/config.default') // 导入配置文件
+
 // 创建Koa 实例
 const app = new Koa();
 // 中间件：请求参数校验
@@ -48,6 +51,15 @@ app.use(koaError({
 }))
 // 中间件：MongoDB数据库操作辅助  （将mongoClient挂到ctx上）
 app.use(mongoMiddleWare())
+
+// 中间件（接口鉴权）
+app.use(koaJwt({
+  secret:config.jwt.secret
+}).unless({
+  // 所有、/api/user开头的都要鉴权
+  path:[/^\/api\/(?!user)/] //?!零宽度负预测
+})
+)
 // 中间件：路由相关
 app.use(router.routes())
 app.use(router.allowedMethods()) //便于提示的

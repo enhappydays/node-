@@ -8,9 +8,10 @@ const router=new Router()
 
 // 配置路由
 router.get('/api/test',homeCtrl.test)
+// 注册登录
 router.post('/api/register',authCtrl.register)
-
-
+router.get('/api/captcha',authCtrl.captcha)
+router.post('/api/login',authCtrl.login)
 // 导出
 
 module.exports=router
