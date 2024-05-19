@@ -2,7 +2,7 @@
 const config={
     // MongoDB  相关配置
     mongodb:{
-        uri:'mongodb://root:123456789@locaohost:27017/blog',
+        uri:'mongodb://root:123456789@127.0.0.1:27017/blog',
         options:{
             useUnifiedTopology:true,
             useNewUrlParser:true,
