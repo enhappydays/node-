@@ -3,6 +3,7 @@ const Router=require('@koa/router')
 // 导入controller
 const homeCtrl=require('../controller/home')
 const authCtrl=require('../controller/auth')
+const profileCtrl=require('../controller/profile')
 // 创建实例
 const router=new Router()
 
@@ -13,5 +14,6 @@ router.post('/api/register',authCtrl.register)
 router.get('/api/captcha',authCtrl.captcha)
 router.post('/api/login',authCtrl.login)
 // 导出
-
+// 个人信息模块
+router.get('/api/user/profile',profileCtrl.getProfile)
 module.exports=router

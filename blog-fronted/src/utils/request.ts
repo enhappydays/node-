@@ -11,10 +11,9 @@ const http = axios.create({
   baseURL,
   timeout: 20000
 })
-
+const { token, removeToken, removeUserinfo } = useUserStore()
 // 请求拦截器
 http.interceptors.request.use((config) => {
-  const { token, removeToken } = useUserStore()
   if (token) {
     // 从 Vuex 中获取 token 并进行请求头的设置
     // ! 告诉 ts 前面的这个对象, 不会为空, 不用你考虑
@@ -33,10 +32,11 @@ http.interceptors.response.use(
     const response = error.response
     const data = response.data
     ElMessage.error(`${data.message}（错误代码: ${data.code}）`)
-    const { token, removeToken } = useUserStore()
+
     // 如果后台返回的 401 未授权通过,清除token信息, 跳转到登录 (token过期处理)
     if (response.status === 401 || !token) {
       removeToken()
+      removeUserinfo()
       return router.replace('/sign/login')
     }
 
