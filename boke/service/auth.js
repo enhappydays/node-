@@ -104,8 +104,15 @@ if (!user) {
     })
 }
 // 对比密码
+console.log('=====================================',user);
 const isValidPassword=await compare(password,user.password)
 console.log('isValidPassword=====',isValidPassword);
+if (!isValidPassword) {
+  return ctx.throw({
+    code:10333,
+    message:'密码不正确'
+  })
+}
 // 生成token
 const token =jwt.sign({
     sub:user._id.toString(), //id

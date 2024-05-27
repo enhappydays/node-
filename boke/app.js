@@ -34,7 +34,7 @@ app.use(koaBody({
 app.use(koaError({
     // 自定义接口返回的错误格式
     format(err,obj){
-        console.log(obj);
+        console.log('obj=======>',obj,'eeeeeeeee=======+++++,',err);
         // 企业开发，为了安全性，一般对于参数校验失败，无需告诉前端更多错误细节
         // 即：只需要告诉前端参数不合法即可
         if (obj.code==='INVALID_PARAM') {
