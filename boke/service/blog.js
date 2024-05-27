@@ -98,6 +98,8 @@ const items=await articleColl.aggregate([
 // 联表结果扁平化
 {$unwind:"$categories"}
 ]).toArray()
+console.log('itemsitemsitems=======',items);
+return items[0]
 }
 
 module.exports = {
