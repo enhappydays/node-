@@ -6,8 +6,8 @@
       </router-link>
 
       <!-- 未登录时显示的内容 -->
-      <div class="logininfo" v-if="true">
-        <!-- <div class="logininfo" v-if="!profile?.username"> -->
+      <!-- <div class="logininfo" v-if="true"> -->
+      <div class="logininfo" v-if="!profile?.username">
         <router-link to="/sign/login">登录</router-link>
         <b>·</b>
         <router-link to="/sign/register">注册</router-link>
@@ -15,14 +15,14 @@
 
       <!-- 已登录时显示的内容 -->
       <div class="userinfo" v-else>
-        <!-- <span>{{ profile?.nickname }}</span> -->
+        <span>{{ profile?.nickname }}</span>
         <el-dropdown @command="commandHandler">
-          <!-- <span class="el-dropdown-link">
+          <span class="el-dropdown-link">
             <div class="avatar">
-              <img class="avatar-img" alt="" :src="getAvatarImage(profile?.avatar)" />
+              <!-- <img class="avatar-img" alt="" :src="getAvatarImage(profile?.avatar)" /> -->
             </div>
             <i class="el-icon-caret-bottom el-icon--right"></i>
-          </span> -->
+          </span>
           <template #dropdown>
             <el-dropdown-menu>
               <el-dropdown-item command="profile">个人设置</el-dropdown-item>
@@ -36,26 +36,30 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, nextTick } from 'vue'
 import { useUserStore } from '../stores/user'
 // import { getAvatarImage } from '@/utils/resource'
 import { useRouter } from 'vue-router'
 
 // 获取store
-const store = useUserStore()
+const { userInfo, removeToken } = useUserStore()
 // 获取router
 const router = useRouter()
 
 // 获取用户信息
-// const profile = computed(() => store.state.userInfo)
+const profile = computed(() => userInfo)
+console.log('profile=====', profile)
 
 // 提供处理函数, 下拉菜单
-const commandHandler = (command: string) => {
+const commandHandler = async (command: string) => {
   if (command === 'profile') {
     router.push('/my/profile')
   } else if (command === 'logout') {
-    // store.dispatch('clearLogin')
+    await removeToken()
     router.push('/sign/login')
+    // nextTick(() => {
+
+    // })
   }
 }
 </script>
