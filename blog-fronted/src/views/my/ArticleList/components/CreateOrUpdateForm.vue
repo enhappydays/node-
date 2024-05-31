@@ -44,7 +44,7 @@
 
       <el-form-item label="文章正文" prop="content">
         <editor
-          api-key="lplp5c6jparolr0g3hns10f6esaa1fff8pd6zwv8q0g3smim"
+          :api-key="'x7ep0bd80kcswsxnf1blpcjpnya0pqfb27f4zu8ilhjbc5vs'"
           :init="editorOptions"
           v-model="formData.content"
         />
@@ -64,9 +64,10 @@
 <script lang="ts" setup>
 import { PropType, reactive, ref, watch } from 'vue'
 import Editor from '@tinymce/tinymce-vue'
-// import { createArticle, updateArticle } from '@/api/article';
+import { createArticle, updateArticle } from '@/api/article'
 // import { uploadImage } from '@/api/upload';
-// import { baseURL } from '@/utils/request'
+import { baseURL } from '@/utils/request'
+import { dayjs } from 'element-plus'
 
 interface Category {
   _id: string
@@ -137,32 +138,40 @@ const editorOptions = reactive({
   // 界⾯使⽤的⽪肤⽂件路径
   skin_url: '/tinymce/skins/ui/oxide',
   // 启⽤的插件
-  plugins: [
-    'advlist autolink lists link image charmap print preview anchor',
-    'searchreplace visualblocks code fullscreen',
-    'insertdatetime media table paste code wordcount  image'
-  ],
+  // plugins: ['lists link image table code help wordcount'],
   // 启⽤的⼯具栏按钮
-  toolbar: [
-    'undo redo | formatselect | forecolor bold italic backcolor | ',
-    'alignleft aligncenter alignright alignjustify | ',
-    'bullist numlist outdent indent | ',
-    'removeformat | fullscreen image'
-  ].join(''),
+  // toolbar: [
+  //   'undo redo | formatselect | forecolor bold italic backcolor | ',
+  //   'alignleft aligncenter alignright alignjustify | ',
+  //   'bullist numlist outdent indent | ',
+  //   'removeformat | fullscreen image'
+  // ].join(''),
   // 编辑器初始显示内容
   contentValue: formData.content,
-  // 自定义图片上传逻辑
-  images_upload_handler: async (blobInfo: any, succFun: any, failFun: any) => {
-    // 使用formData进行文件上传
-    const fd = new FormData()
-    fd.append('file', blobInfo.blob(), blobInfo.filename())
+  selector: 'textarea',
+  plugins:
+    'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
+  toolbar:
+    'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+  tinycomments_mode: 'embedded',
+  tinycomments_author: 'Author name',
+  mergetags_list: [
+    { value: 'First.Name', title: 'First Name' },
+    { value: 'Email', title: 'Email' }
+  ]
 
-    // 调用接口, 执行文件上传
-    const { location } = await uploadImage(fd)
-    console.log(location)
-    // 调用成功的函数, 通知 TinyMCE 编辑器, 上传成功的图片路径
-    succFun(baseURL + location)
-  }
+  // 自定义图片上传逻辑
+  // images_upload_handler: async (blobInfo: any, succFun: any, failFun: any) => {
+  //   // 使用formData进行文件上传
+  //   const fd = new FormData()
+  //   fd.append('file', blobInfo.blob(), blobInfo.filename())
+
+  //   // 调用接口, 执行文件上传
+  //   const { location } = await uploadImage(fd)
+  //   console.log(location)
+  //   // 调用成功的函数, 通知 TinyMCE 编辑器, 上传成功的图片路径
+  //   succFun(baseURL + location)
+  // }
 })
 
 // 事件触发器: 列出组件中允许被触发的所有自定义事件

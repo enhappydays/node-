@@ -15,11 +15,7 @@
       status-icon
     >
       <el-form-item label="昵称" prop="nickname">
-        <el-input
-          type="text"
-          v-model="formData.nickname"
-          autocomplete="off"
-        ></el-input>
+        <el-input type="text" v-model="formData.nickname" autocomplete="off"></el-input>
       </el-form-item>
     </el-form>
 
@@ -33,53 +29,53 @@
 </template>
 
 <script lang="ts" setup>
-import { defineEmits, defineProps, reactive, ref, watch } from "vue";
-import { ElMessage } from "element-plus";
-import { useStore } from "vuex";
+import { defineEmits, defineProps, reactive, ref, watch } from 'vue'
+import { ElMessage } from 'element-plus'
+import { useUserStore } from '../../../../stores/user'
 
 // 属性：定义组件的 Props
 const props = defineProps({
   visible: {
     type: Boolean,
-    default: false,
-  },
-});
+    default: false
+  }
+})
 
 // 事件触发器：列出本组件中允许触发的所有自定义事件
-const emit = defineEmits(["update:visible"]);
+const emit = defineEmits(['update:visible'])
 
 // 获取状态管理器
-const store = useStore();
+const store = useUserStore()
 
 // 状态：表单数据
 const formData = reactive({
-  nickname: store.state.userInfo?.nickname,
-});
+  nickname: store.userInfo?.nickname
+})
 
 // 表单验证规则
 const formRules = {
   nickname: {
     required: true,
-    trigger: "blur",
-    message: "昵称是必填项",
-  },
-};
+    trigger: 'blur',
+    message: '昵称是必填项'
+  }
+}
 
 // 状态：对话框的显示、隐藏
-const isVisible = ref<boolean>(false);
+const isVisible = ref<boolean>(false)
 
 // 状态：表单引用
-const dialogForm = ref<any>(null);
+const dialogForm = ref<any>(null)
 
 // 函数：关闭对话框
 const closeDialog = () => {
-  emit("update:visible", false);
-};
+  emit('update:visible', false)
+}
 
 // 事件：点击取消或关闭窗口
 const cancelHandler = () => {
-  closeDialog();
-};
+  closeDialog()
+}
 
 // 事件：点击确认按钮
 const confirmHandler = async () => {
@@ -88,7 +84,8 @@ const confirmHandler = async () => {
     await dialogForm.value.validate()
 
     // 提交发布action
-    await store.dispatch('updateProfileBaseInfo', formData)
+    await store.updateProfileBaseInfo(formData.nickname)
+    // await store.dispatch('updateProfileBaseInfo', formData)
 
     // 提示消息
     ElMessage.success('个人基础信息修改成功')
@@ -96,14 +93,14 @@ const confirmHandler = async () => {
     // 关闭弹框
     closeDialog()
   } catch (e) {}
-};
+}
 
 // 监听：监听 Props 的变化
 watch(
   () => props.visible,
   (newVal) => {
     // 设置对话框是否可见
-    isVisible.value = newVal;
+    isVisible.value = newVal
   }
-);
+)
 </script>

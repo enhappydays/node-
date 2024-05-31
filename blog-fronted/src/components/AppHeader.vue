@@ -19,7 +19,7 @@
         <el-dropdown @command="commandHandler">
           <span class="el-dropdown-link">
             <div class="avatar">
-              <!-- <img class="avatar-img" alt="" :src="getAvatarImage(profile?.avatar)" /> -->
+              <img class="avatar-img" alt="" :src="getAvatarImage(profile?.avatar)" />
             </div>
             <i class="el-icon-caret-bottom el-icon--right"></i>
           </span>
@@ -38,7 +38,7 @@
 <script lang="ts" setup>
 import { computed, nextTick } from 'vue'
 import { useUserStore } from '../stores/user'
-// import { getAvatarImage } from '@/utils/resource'
+import { getAvatarImage } from '@/utils/resource'
 import { useRouter } from 'vue-router'
 
 // 获取store
@@ -57,9 +57,6 @@ const commandHandler = async (command: string) => {
   } else if (command === 'logout') {
     await removeToken()
     router.push('/sign/login')
-    // nextTick(() => {
-
-    // })
   }
 }
 </script>

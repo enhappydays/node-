@@ -1,3 +1,4 @@
+import { updateAvatar, updateBaseInfo } from './../api/profile'
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { login } from '@/api/auth'
@@ -46,5 +47,24 @@ export const useUserStore = defineStore('user', () => {
     removeUserinfo()
     localStorage.removeItem('token')
   }
-  return { token, loginBypassword, removeToken, removeUserinfo, getUserInfo, userInfo }
+  // 修改头像
+  const updateProfileAvatar = async (avatar: any) => {
+    await updateAvatar(avatar)
+    userInfo.value.avatar = avatar
+  }
+  // 修改个人资料
+  const updateProfileBaseInfo = async (params: string) => {
+    await updateBaseInfo(params)
+    userInfo.value.nickname = params
+  }
+  return {
+    updateProfileBaseInfo,
+    token,
+    loginBypassword,
+    removeToken,
+    removeUserinfo,
+    getUserInfo,
+    userInfo,
+    updateProfileAvatar
+  }
 })

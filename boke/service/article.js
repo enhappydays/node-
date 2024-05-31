@@ -35,6 +35,7 @@ if (result.insertedCount === 0) {
  */
 async function listArticles(ctx, params) {
     // 参数处理
+  
     const currentUserId =new ObjectId(ctx.state.user.sub)
     const categoryId = params.categoryId
     const keyword = params.keyword
@@ -67,7 +68,7 @@ async function listArticles(ctx, params) {
   
     // 分页查询步骤1：查询符合条件的记录总数
     const total = await articleColl.countDocuments(filter)
-  
+  console.log('total===========================================================================>>>>',total);
     // 分页查询步骤2：使用聚合进行文章表和分类表的联表查询，获取当前页数据
     const items = await articleColl.aggregate([
       // 过滤条件

@@ -13,8 +13,8 @@ module.exports={
         ctx.verifyParams({
             categoryId:'string',
             title:'string',
-            summary:'string',
-            content:'string',
+            // summary:'string',
+            // content:'string',
         })
         console.log(ctx);
         await createArticle(ctx,ctx.request.body)
@@ -29,7 +29,7 @@ module.exports={
     async list(ctx) {
         // 查询文章
         const result = await listArticles(ctx, ctx.query)
-    
+   
         // 返回成功的数据
         ctx.body = {
           code: 0,
@@ -64,8 +64,8 @@ module.exports={
         ctx.verifyParams({
             categoryId:'string',
             title:'string',
-            summary:'string',
-            content:'string',
+            // summary:'string',
+            // content:'string',
         })
         const id=ctx.params.id
         const result=await editArticleById(ctx,id,ctx.request.body)
