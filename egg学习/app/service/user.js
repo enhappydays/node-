@@ -1,14 +1,26 @@
 const { Service } = require('egg');
 
 class UserService extends Service {
+  // 查找列表
+  // 从数据库中查找对应title的用户数据
+  async getUserListByTitle(title) {
+    const result = await this.app.mysql.select('user', {
+      where: {
+        title,
+      },
+      columns: [ 'username', 'title', 'id' ],
+      limit: 5,
+      offset: 0,
+    });
+    return result;
+  }
   // 从数据库中查找对应id的用户数据
   async findById(id) {
     console.log(id);
-
-    return {
+    const result = await this.app.mysql.get('user', {
       id,
-      name: '55555',
-    };
+    });
+    return result;
   }
   // 操作数据库
   async create({ username, password, title }) {

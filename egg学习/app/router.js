@@ -7,4 +7,7 @@ module.exports = app => {
   router.get('/news/:id', controller.news.list);
   // ------------------------------------------------------------------------------------------------------------sql
   router.post('/user/create', controller.user.createUser);
+  router.get('/user/list', controller.user.getUserList);
+  router.get('/user/:id', controller.user.getUserById);
+
 };

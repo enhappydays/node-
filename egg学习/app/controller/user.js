@@ -13,6 +13,29 @@ class userController extends Controller {
       data: result ? '用户创建成功' : '用户创建失败',
     };
   }
+  // 根据id获取用户信息
+  async getUserById() {
+    const { ctx } = this;
+    // 获取请求体参数
+    const id = ctx.params.id;
+    const result = await ctx.service.user.findById(id);
+
+    ctx.body = {
+      success: true,
+      data: result,
+    };
+  }
+  async getUserList() {
+    const { ctx } = this;
+    // 获取请求体参数
+    const query = ctx.query;
+    const result = await ctx.service.user.getUserListByTitle(query.title);
+
+    ctx.body = {
+      success: true,
+      data: result,
+    };
+  }
 }
 
 
