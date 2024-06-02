@@ -20,7 +20,28 @@ module.exports = appInfo => {
   const userConfig = {
     // myAppName: 'egg',
   };
-
+  config.bodyParser = {
+    jsonLimit: '20mb',
+    formLimit: '20mb',
+    textLimit: '20mb',
+  };
+  // 默认开启安全插件 egg-security,默认true
+  config.security = {
+    csrf: {
+      enable: false,
+    },
+  };
+  config.mysql = {
+    client: {
+      host: '127.0.0.1',
+      post: '3306',
+      user: 'admin',
+      password: '000000',
+      database: 'test',
+    },
+    app: true,
+    agent: false,
+  };
   return {
     ...config,
     ...userConfig,

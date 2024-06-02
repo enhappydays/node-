@@ -4,5 +4,7 @@
 module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
-  router.get('/news', controller.news.list);
+  router.get('/news/:id', controller.news.list);
+  // ------------------------------------------------------------------------------------------------------------sql
+  router.post('/user/create', controller.user.createUser);
 };
