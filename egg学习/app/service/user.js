@@ -35,5 +35,34 @@ class UserService extends Service {
     const isSuccess = result.affectedRows === 1;
     return isSuccess;
   }
+  // 修改
+  async update(userInfo) {
+    // this.app.mysql操作mysql客户端实例
+    const result = await this.app.mysql.update('user', userInfo, {
+      // 指定字段修改
+      where: {
+        id: 1,
+      },
+      columns: [ 'username' ],
+    });
+
+    // 判断是否成功
+    const isSuccess = result.affectedRows > 0;
+    return isSuccess;
+  }
+  async del(userInfo) {
+    // this.app.mysql操作mysql客户端实例
+    const result = await this.app.mysql.delete('user', userInfo, {
+      // // 指定字段修改
+      // where: {
+      //   id: 1,
+      // },
+      // columns: [ 'username' ],
+    });
+
+    // 判断是否成功
+    const isSuccess = result.affectedRows > 0;
+    return isSuccess;
+  }
 }
 module.exports = UserService;

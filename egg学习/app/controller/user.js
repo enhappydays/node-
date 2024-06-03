@@ -36,6 +36,28 @@ class userController extends Controller {
       data: result,
     };
   }
+  async updaterUser() {
+    const { ctx } = this;
+    // 获取请求体参数
+    const body = ctx.request.body;
+    await ctx.service.user.update(body);
+
+    ctx.body = {
+      success: true,
+      data: '更新成功',
+    };
+  }
+  async deleteUser() {
+    const { ctx } = this;
+    // 获取请求体参数
+    const body = ctx.request.body;
+    await ctx.service.user.del(body);
+
+    ctx.body = {
+      success: true,
+      data: '删除成功',
+    };
+  }
 }
 
 
