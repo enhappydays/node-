@@ -11,7 +11,7 @@ module.exports = appInfo => {
   const config = exports = {};
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1717251713169_6146';
+  config.keys = appInfo.name + '_1717424515858_4654';
 
   // add your middleware config here
   config.middleware = [];
@@ -20,27 +20,20 @@ module.exports = appInfo => {
   const userConfig = {
     // myAppName: 'egg',
   };
-  config.bodyParser = {
-    jsonLimit: '20mb',
-    formLimit: '20mb',
-    textLimit: '20mb',
-  };
-  // 默认开启安全插件 egg-security,默认true
   config.security = {
     csrf: {
       enable: false,
     },
   };
-  config.mysql = {
-    client: {
-      host: '127.0.0.1',
-      port: '3306',
-      user: 'admin',
-      password: '000000',
-      database: 'test',
-    },
-    app: true,
-    agent: false,
+  //  sequelize
+  config.sequelize = {
+    dialect: 'mysql',
+    host: '127.0.0.1',
+    port: 3306,
+    user: 'root',
+    password: '000000',
+    database: 'se_sequelize',
+
   };
   return {
     ...config,
