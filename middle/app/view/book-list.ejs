@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>书籍列表</title>
+  </head>
+
+  <body>
+    <h1>书籍列表</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <td>书名</td>
+          <td>作者</td>
+          <td>出版社</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% for (let item of data){ %>
+        <tr>
+          <td><%=item.name%></td>
+          <td><%=item.name%></td>
+          <td><%=item.price%></td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- <script src="./axios.js"></script> -->
+    <script>
+    
+    </script>
+  </body>
+</html>

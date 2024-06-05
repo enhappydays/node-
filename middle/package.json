@@ -1,5 +1,5 @@
 {
-  "name": "sequelize",
+  "name": "中间件",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -7,10 +7,10 @@
     "declarations": true
   },
   "dependencies": {
+    "axios": "^1.7.2",
     "egg": "^3.17.5",
     "egg-scripts": "2",
-    "egg-sequelize": "^6.0.0",
-    "mysql2": "^3.10.0"
+    "egg-view-ejs": "^3.0.0"
   },
   "devDependencies": {
     "egg-bin": "6",
@@ -22,9 +22,9 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-sequelize",
-    "stop": "egg-scripts stop --title=egg-server-sequelize",
-    "dev": "egg-bin --port=7002 dev",
+    "start": "egg-scripts start --daemon --title=egg-server-中间件",
+    "stop": "egg-scripts stop --title=egg-server-中间件",
+    "dev": "egg-bin dev",
     "test": "npm run lint -- --fix && npm run test:local",
     "test:local": "egg-bin test",
     "cov": "egg-bin cov",
