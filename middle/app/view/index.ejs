@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小兔鲜儿 - 新鲜 惠民 快捷！</title>
+
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- Normalize.css 样式重置 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css">
+
+  <!-- iconfont 字体图标 -->
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_2143783_iq6z4ey5vu.css">
+
+  <!-- 首页的样式文件 -->
+  <link rel="stylesheet" href="/public/css/common.css">
+  <link rel="stylesheet" href="/public/css/layout.css">
+  <link rel="stylesheet" href="/public/css/home.css">
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+</head>
+
+<body>
+  <!-- 顶部栏 -->
+  <nav class="app-topnav">
+    <div class="container">
+      <ul>
+        <li><a href="/login">请先登录</a></li>
+        <li><a href="javascript:;">免费注册</a></li>
+        <li><a href="/member/order">我的订单</a></li>
+        <li><a href="javascript:;">会员中心</a></li>
+        <li><a href="javascript:;">帮助中心</a></li>
+        <li><a href="javascript:;">关于我们</a></li>
+        <li><a href="javascript:;"><i class="iconfont icon-phone"></i>手机版</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 头部栏 -->
+  <header class="app-header">
+    <div class="container">
+      <!-- Logo -->
+      <h1 class="logo">
+        <a href="/" class="router-link-active router-link-exact-active" aria-current="page">小兔鲜</a>
+      </h1>
+
+      <!-- 导航菜单 -->
+      <ul class="app-header-nav">
+        <li class="home">
+          <a href="/" class="router-link-active router-link-exact-active" aria-current="page">首页</a>
+        </li>
+
+        <% for (const nav of navs) { %> 
+        <li>
+          <a href="/category/<%= nav.id  %> ">
+            <%= nav.name  %> 
+          </a>
+          <div class="layer">
+            <ul>
+              <% for (const subnav of nav.children) { %> 
+              <li>
+                <a href="/category/sub/<%= subnav.id  %> ">
+                  <img src="<%= subnav.picture  %> " alt="">
+                  <p>
+                    <%= subnav.name  %> 
+                  </p>
+                </a>
+              </li>
+              <% } %> 
+            </ul>
+          </div>
+        </li>
+        <% } %> 
+      </ul>
+
+      <!-- 搜索框 -->
+      <div class="search">
+        <i class="iconfont icon-search"></i>
+        <input type="text" placeholder="搜一搜">
+      </div>
+
+      <!-- 购物车按钮 -->
+      <div class="cart">
+        <a href="/cart" class="curr">
+          <i class="iconfont icon-cart"></i>
+          <em>0</em>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 吸顶状态的导航菜单 -->
+  <div class="app-header-sticky">
+    <div class="container" style="display: none;">
+      <a href="/" class="router-link-active router-link-exact-active logo" aria-current="page"></a>
+
+      <ul class="app-header-nav">
+        <li class="home">
+          <a href="/" class="router-link-active router-link-exact-active" aria-current="page">首页</a>
+        </li>
+
+        <% for (const nav of navs) { %>
+        <li>
+          <a href="/category/<%= nav.id %>">
+            <%= nav.name %>
+          </a>
+          <div class="layer">
+            <ul>
+              <% for (const subnav of nav.children) { %>
+              <li>
+                <a href="/category/sub/<%= subnav.id %>">
+                  <img src="<%= subnav.picture %>" alt="">
+                  <p>
+                    <%= subnav.name %>
+                  </p>
+                </a>
+              </li>
+              <li>
+                <a href="/category/sub/<%= subnav.id %>">
+                  <img src="<%= subnav.picture %>" alt="">
+                  <p>
+                    <%= subnav.name %>
+                  </p>
+                </a>
+              </li>
+              <% } %>
+            </ul>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+
+      <div class="right">
+        <a href="/" class="router-link-active router-link-exact-active" aria-current="page">品牌</a>
+        <a href="/" class="router-link-active router-link-exact-active" aria-current="page">专题</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- ... 这边将会编写页面主体部分 ... -->
+  <!-- 主体区域 -->
+  <div class="app-body">
+    <div class="home-entry">
+      <div class="container">
+
+        <!-- 分类目录 -->
+        <div class="home-category">
+          <ul class="menu">
+            <% for (const category of categories) { %> 
+            <li data-id="<%= category.id  %>">
+              <a href="/category/<%= category.id  %>">
+                <%= category.name  %> 
+              </a>
+
+              <% for ( const subCate of category.children ) {  %> 
+              <a href="/category/sub/<%= subCate.id  %> ">
+                <%= subCate.name  %> 
+              </a>
+              <% } %> 
+            </li>
+            <% } %> 
+          </ul>
+        </div>
+
+        <!-- 分类目录右边的 Banner 区域 -->
+        <div class="home-banner">
+          <div class="xtx-carousel">
+            <ul class="carousel-body">
+              <% for (const banner of banners) { %> 
+              <li class="carousel-item">
+                <a href="<%= banner.hrefUrl  %> ">
+                  <img src="<%= banner.imgUrl  %> " alt="">
+                </a>
+              </li>
+              <% } %> 
+            </ul>
+
+            <!-- 轮播图的：左右按钮 -->
+            <a href="javascript:;" class="carousel-btn prev">
+              <i class="iconfont icon-angle-left"></i>
+            </a>
+
+            <a href="javascript:;" class="carousel-btn next">
+              <i class="iconfont icon-angle-right"></i>
+            </a>
+
+            <!-- 轮播图的：点点点 -->
+            <div class="carousel-indicator">
+              <% for (const banner of banners) { %> 
+              <span></span>
+              <% } %> 
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- 新鲜好物 -->
+    <div class="home-new">
+      <div class="home-panel">
+        <div class="container">
+          <div class="head">
+            <h3>新鲜好物<small>新鲜出炉 品质靠谱</small></h3>
+            <a href="/" class="xtx-more"><span>查看全部</span><i class="iconfont icon-angle-right"></i></a>
+          </div>
+          <div style="position: relative; height: 426px;">
+            <ul class="goods-list">
+              <% for (const product of newProducts) { %>
+              <li>
+                <a href="/product/<%= product.id %>">
+                  <img src="<%= product.picture %>" alt="">
+                  <p class="name ellipsis">
+                    <%= product.name %>
+                  </p>
+                  <p class="price">¥<%= product.price %>
+                  </p>
+                </a>
+              </li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 人气推荐 -->
+    <div class="home-hot">
+      <div class="home-panel">
+        <div class="container">
+          <div class="head">
+            <h3>人气推荐<small>人气爆款 不容错过</small></h3>
+          </div>
+          <div style="position: relative; height: 426px;">
+            <ul class="goods-list">
+              <% for (const hot of hots) { %>
+              <li>
+                <a href="/">
+                  <img src="<%= hot.picture %>" alt="">
+                  <p class="name">
+                    <%= hot.title %>
+                  </p>
+                  <p class="desc">
+                    <%= hot.alt %>
+                  </p>
+                </a>
+              </li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 热门品牌 -->
+    <div class="home-panel home-brand">
+      <div class="container">
+        <div class="head">
+          <h3>热门品牌<small>国际经典 品质保证</small></h3>
+          <a class="disabled iconfont icon-angle-left prev" href="javascript:;"></a>
+          <a class="iconfont icon-angle-right next" href="javascript:;"></a>
+        </div>
+        <div class="box">
+          <ul class="list" style="transform: translateX(0px);">
+            <% for (const brand of brands) { %>
+            <li>
+              <a href="/">
+                <img src="<%= brand.picture %>" alt="">
+              </a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 商品板块 -->
+    <div class="home-product">
+      <% for (const section of sections) { %>
+      <div class="home-panel">
+        <div class="container">
+          <div class="head">
+            <h3>
+              <%= section.name %><small></small>
+            </h3>
+
+            <div class="sub">
+              <% for (const sub of section.children) { %>
+              <a href="/category/sub/<%= sub.id %>">
+                <%= sub.name %>
+              </a>
+              <% } %>
+            </div>
+
+            <a href="/category/<%= section.id %>" class="xtx-more">
+              <span>查看全部</span>
+              <i class="iconfont icon-angle-right"></i>
+            </a>
+          </div>
+
+          <div class="box">
+            <a href="/category/1005000" class="cover">
+              <img alt="" src="<%= section.picture %>">
+              <strong class="label">
+                <span>
+                  <%= section.name %>馆
+                </span>
+                <span>
+                  <%= section.saleInfo %>
+                </span>
+              </strong>
+            </a>
+
+            <ul class="goods-list">
+              <% for (const good of section.goods) { %>
+              <li>
+                <div class="goods-item">
+                  <a href="/product/<%= good.id %>" class="image">
+                    <img alt="" src="<%= good.picture %>">
+                  </a>
+                  <p class="name ellipsis-2">
+                    <%= good.name %>
+                  </p>
+                  <p class="desc ellipsis">
+                    <%= good.desc %>
+                  </p>
+                  <p class="price">¥<%= good.price %>
+                  </p>
+                  <div class="extra">
+                    <a href="/">
+                      <span>找相似</span>
+                      <span>发现现多宝贝&gt;</span>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    </div>
+
+    <!-- 最新专题 -->
+    <div class="home-panel home-special">
+      <div class="container">
+        <div class="head">
+          <h3>最新专题<small></small></h3>
+          <a href="/" class="xtx-more"><span>查看全部</span>
+            <i class="iconfont icon-angle-right"></i>
+          </a>
+        </div>
+        <div class="special-list">
+          <% for (const speical of specials) { %>
+          <div class="special-item">
+            <a href="/">
+              <img src="<%= speical.cover %>" alt="">
+              <div class="meta">
+                <p class="title">
+                  <span class="top ellipsis">
+                    <%= speical.title %>
+                  </span>
+                  <span class="sub ellipsis">
+                    <%= speical.summary %>
+                  </span>
+                </p>
+                <span class="price">¥<%= speical.lowestPrice %>起</span>
+              </div>
+            </a>
+            <div class="foot">
+              <span class="like"><i class="iconfont icon-hart1"></i>
+                <%= speical.collectNum %>
+              </span>
+              <span class="view"><i class="iconfont icon-see"></i>
+                <%= speical.viewNum %>
+              </span>
+              <span class="reply"><i class="iconfont icon-message"></i>
+                <%= speical.replyNum %>
+              </span>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>   
+  </div>
+  
+  <!-- 底部栏 -->
+  <footer class="app-footer">
+    <div class="contact">
+      <div class="container">
+        <dl>
+          <dt>客户服务</dt>
+          <dd><i class="iconfont icon-kefu"></i> 在线客服</dd>
+          <dd><i class="iconfont icon-question"></i> 问题反馈</dd>
+        </dl>
+        <dl>
+          <dt>关注我们</dt>
+          <dd><i class="iconfont icon-weixin"></i> 公众号</dd>
+          <dd><i class="iconfont icon-weibo"></i> 微博</dd>
+        </dl>
+        <dl>
+          <dt>下载APP</dt>
+          <dd class="qrcode"><img src="/public/img/qrcode.jpg">
+          </dd>
+          <dd class="download">
+            <span>扫描二维码</span>
+            <span>立马下载APP</span>
+            <a href="javascript:;">下载页面</a>
+          </dd>
+        </dl>
+        <dl>
+          <dt>服务热线</dt>
+          <dd class="hotline">
+            400-0000-000
+            <small>周一至周日 8:00-18:00</small>
+          </dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="extra">
+      <div class="container">
+        <div class="slogan">
+          <a href="javascript:;"><i class="iconfont icon-footer01"></i><span>价格亲民</span></a>
+          <a href="javascript:;"><i class="iconfont icon-footer02"></i><span>物流快捷</span></a>
+          <a href="javascript:;"><i class="iconfont icon-footer03"></i><span>品质新鲜</span></a>
+        </div>
+        <div class="copyright">
+          <p>
+            <a href="javascript:;">关于我们</a>
+            <a href="javascript:;">帮助中心</a>
+            <a href="javascript:;">售后服务</a>
+            <a href="javascript:;">配送与验收</a>
+            <a href="javascript:;">商务合作</a>
+            <a href="javascript:;">搜索推荐</a>
+            <a href="javascript:;">友情链接</a>
+          </p>
+          <p>CopyRight © 小兔鲜儿</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/public/js/home.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,458 @@
+/* -------------- 顶部栏 --------------- */
+.app-topnav {
+  background: #333;
+}
+.app-topnav ul {
+  display: flex;
+  height: 53px;
+  justify-content: flex-end;
+  align-items: center;
+}
+.app-topnav ul li a {
+  padding: 0 15px;
+  color: #cdcdcd;
+  line-height: 1;
+  display: inline-block;
+}
+.app-topnav ul li a i {
+  font-size: 14px;
+  margin-right: 2px;
+}
+.app-topnav ul li a:hover {
+  color: #27BA9B;
+}
+.app-topnav ul li ~ li a {
+  border-left: 2px solid #666;
+}
+
+/* ---------- 头部栏 ------------------- */
+.app-header {
+  background: #fff;
+}
+.app-header .container {
+  display: flex;
+  align-items: center;
+}
+.app-header .logo {
+  width: 200px;
+}
+.app-header .logo a {
+  display: block;
+  height: 132px;
+  width: 100%;
+  text-indent: -9999px;
+  background: url("../img/logo.png") center 18px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.app-header .search {
+  width: 170px;
+  height: 32px;
+  position: relative;
+  border-bottom: 1px solid #e7e7e7;
+  line-height: 32px;
+}
+.app-header .search .icon-search {
+  font-size: 18px;
+  margin-left: 5px;
+}
+.app-header .search input {
+  width: 140px;
+  padding-left: 5px;
+  color: #666;
+}
+
+.app-header-nav {
+  width: 820px;
+  display: flex;
+  justify-content: space-around;
+  padding-left: 40px;
+  position: relative;
+  z-index: 999;
+}
+.app-header-nav > li {
+  margin-right: 40px;
+  width: 38px;
+  text-align: center;
+}
+.app-header-nav > li > a {
+  font-size: 16px;
+  line-height: 32px;
+  height: 32px;
+  display: inline-block;
+}
+.app-header-nav > li:hover > a {
+  color: #27BA9B;
+  border-bottom: 1px solid #27BA9B;
+}
+.layer {
+  width: 1240px;
+  background-color: #fff;
+  position: absolute;
+  left: -200px;
+  top: 56px;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  box-shadow: 0 0 5px #ccc;
+  transition: all .2s .1s;
+}
+.layer.open {
+  height: 132px;
+  opacity: 1;
+}
+.layer ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 70px;
+  align-items: center;
+  height: 132px;
+}
+.layer ul li {
+  width: 110px;
+  text-align: center;
+}
+.layer ul li img {
+  width: 60px;
+  height: 60px;
+}
+.layer ul li p {
+  padding-top: 10px;
+}
+.layer ul li:hover p {
+  color: #27BA9B;
+}
+
+
+.cart {
+  width: 50px;
+  position: relative;
+  z-index: 600;
+}
+.cart .curr {
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  position: relative;
+  display: block;
+}
+.cart .curr .icon-cart {
+  font-size: 22px;
+}
+.cart .curr em {
+  font-style: normal;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 1px 6px;
+  line-height: 1;
+  background: #E26237;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 10px;
+  font-family: Arial;
+}
+.cart:hover .layer {
+  opacity: 1;
+  transform: none;
+}
+.cart .layer {
+  opacity: 0;
+  transition: all .4s .2s;
+  transform: translatey(-200px) scale(1, 0);
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  border-radius: 4px;
+  padding-top: 10px;
+}
+.cart .layer::before {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: -10px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  transform: scale(0.6, 1) rotate(45deg);
+  box-shadow: -3px -3px 5px rgba(0, 0, 0, 0.1);
+}
+.cart .layer .foot {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 70px;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  background: #f8f8f8;
+  align-items: center;
+}
+.cart .layer .foot .total {
+  padding-left: 10px;
+  color: #999;
+}
+.cart .layer .foot .total p:last-child {
+  font-size: 18px;
+  color: #CF4444;
+}
+.cart .list {
+  height: 310px;
+  overflow: auto;
+  padding: 0 10px;
+}
+.cart .list::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.cart .list::-webkit-scrollbar-track {
+  background: #f8f8f8;
+  border-radius: 2px;
+}
+.cart .list::-webkit-scrollbar-thumb {
+  background: #eee;
+  border-radius: 10px;
+}
+.cart .list::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
+.cart .list .item {
+  border-bottom: 1px solid #f5f5f5;
+  padding: 10px 0;
+  position: relative;
+}
+.cart .list .item i {
+  position: absolute;
+  bottom: 38px;
+  right: 0;
+  opacity: 0;
+  color: #666;
+  transition: all .5s;
+}
+.cart .list .item:hover i {
+  opacity: 1;
+  cursor: pointer;
+}
+.cart .list .item a {
+  display: flex;
+  align-items: center;
+}
+.cart .list .item a img {
+  height: 80px;
+  width: 80px;
+}
+.cart .list .item a .center {
+  padding: 0 10px;
+  width: 200px;
+}
+.cart .list .item a .center .name {
+  font-size: 16px;
+}
+.cart .list .item a .center .attr {
+  color: #999;
+  padding-top: 5px;
+}
+.cart .list .item a .right {
+  width: 100px;
+  padding-right: 20px;
+  text-align: center;
+}
+.cart .list .item a .right .price {
+  font-size: 16px;
+  color: #CF4444;
+}
+.cart .list .item a .right .count {
+  color: #999;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.app-header-sticky {
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  background-color: #fff;
+  border-bottom: 1px solid #e4e4e4;
+  transform: translatey(-100%);
+  opacity: 0;
+}
+.app-header-sticky.show {
+  transition: all 0.3s linear;
+  transform: none;
+  opacity: 1;
+}
+.app-header-sticky .container {
+  display: flex;
+  align-items: center;
+}
+.app-header-sticky .logo {
+  width: 200px;
+  height: 80px;
+  background: url(../img/logo.png) no-repeat right 2px;
+  background-size: 160px auto;
+}
+.app-header-sticky .right {
+  width: 220px;
+  display: flex;
+  text-align: center;
+  padding-left: 40px;
+  border-left: 2px solid #27BA9B;
+}
+.app-header-sticky .right a {
+  width: 38px;
+  margin-right: 40px;
+  font-size: 16px;
+  line-height: 1;
+}
+.app-header-sticky .right a:hover {
+  color: #27BA9B;
+}
+
+/* ----------------------------- */
+.app-body {
+  min-height: 600px;
+}
+
+/* -------------- 底部栏 --------------- */
+.app-footer {
+  overflow: hidden;
+  background-color: #f5f5f5;
+  padding-top: 20px;
+}
+.app-footer .contact {
+  background: #fff;
+}
+.app-footer .contact .container {
+  padding: 60px 0 40px 25px;
+  display: flex;
+}
+.app-footer .contact dl {
+  height: 190px;
+  text-align: center;
+  padding: 0 72px;
+  border-right: 1px solid #f2f2f2;
+  color: #999;
+}
+.app-footer .contact dl:first-child {
+  padding-left: 0;
+}
+.app-footer .contact dl:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+.app-footer .contact dt {
+  line-height: 1;
+  font-size: 18px;
+}
+.app-footer .contact dd {
+  margin: 36px 12px 0 0;
+  float: left;
+  width: 92px;
+  height: 92px;
+  padding-top: 10px;
+  border: 1px solid #ededed;
+}
+.app-footer .contact dd .iconfont {
+  font-size: 36px;
+  display: block;
+  color: #666;
+}
+.app-footer .contact dd:hover .iconfont {
+  color: #27BA9B;
+}
+.app-footer .contact dd:last-child {
+  margin-right: 0;
+}
+.app-footer .contact .qrcode {
+  width: 92px;
+  height: 92px;
+  padding: 7px;
+  border: 1px solid #ededed;
+}
+.app-footer .contact .download {
+  padding-top: 5px;
+  font-size: 14px;
+  width: auto;
+  height: auto;
+  border: none;
+}
+.app-footer .contact .download span {
+  display: block;
+}
+.app-footer .contact .download a {
+  display: block;
+  line-height: 1;
+  padding: 10px 25px;
+  margin-top: 5px;
+  color: #fff;
+  border-radius: 2px;
+  background-color: #27BA9B;
+}
+.app-footer .contact .hotline {
+  padding-top: 20px;
+  font-size: 22px;
+  color: #666;
+  width: auto;
+  height: auto;
+  border: none;
+}
+.app-footer .contact .hotline small {
+  display: block;
+  font-size: 15px;
+  color: #999;
+}
+.app-footer .extra {
+  background-color: #333;
+}
+.app-footer .slogan {
+  height: 178px;
+  line-height: 58px;
+  padding: 60px 100px;
+  border-bottom: 1px solid #434343;
+  display: flex;
+  justify-content: space-between;
+}
+.app-footer .slogan a {
+  height: 58px;
+  line-height: 58px;
+  color: #fff;
+  font-size: 28px;
+}
+.app-footer .slogan a i {
+  font-size: 50px;
+  vertical-align: middle;
+  margin-right: 10px;
+  font-weight: 100;
+}
+.app-footer .slogan a span {
+  vertical-align: middle;
+  text-shadow: 0 0 1px #333;
+}
+.app-footer .copyright {
+  height: 170px;
+  padding-top: 40px;
+  text-align: center;
+  color: #999;
+  font-size: 15px;
+}
+.app-footer .copyright p {
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.app-footer .copyright a {
+  color: #999;
+  line-height: 1;
+  padding: 0 10px;
+  border-right: 1px solid #999;
+}
+.app-footer .copyright a:last-child {
+  border-right: none;
+}
