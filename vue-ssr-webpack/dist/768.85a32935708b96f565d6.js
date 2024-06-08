@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkvue_ssr_webpack=self.webpackChunkvue_ssr_webpack||[]).push([[768],{768:(t,e,s)=>{s.r(e),s.d(e,{default:()=>u});const r={asyncData({store:t,route:e}){const s=e.params.id;return t.dispatch("fetchItem",s)},computed:{item(){const t=this.$route.params.id;return this.$store.state.items[t]}}},u=(0,s(486).A)(r,(function(){var t=this;return(0,t._self._c)("div",[t._v("我是item信息 - "+t._s(t.item.title))])}),[],!1,null,null,null).exports}}]);
+//# sourceMappingURL=768.85a32935708b96f565d6.js.map

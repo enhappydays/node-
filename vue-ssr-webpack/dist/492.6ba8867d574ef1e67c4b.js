@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkvue_ssr_webpack=self.webpackChunkvue_ssr_webpack||[]).push([[492],{492:(e,s,u)=>{u.r(s),u.d(s,{default:()=>l});const l=(0,u(486).A)({},(function(){return(0,this._self._c)("div",[this._v("我是home")])}),[],!1,null,null,null).exports}}]);
+//# sourceMappingURL=492.6ba8867d574ef1e67c4b.js.map
