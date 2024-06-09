@@ -1,0 +1,39 @@
+// 主体色
+@xtxColor: #27BA9B;
+// 辅助色
+@fuzuColor: #E26237;
+// 成功色
+@sucColor: #1DC779;
+// 警告色
+@warnColor: #FFB302;
+// 价格色
+@priceColor: #CF4444;
+
+.icon(){
+  .icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    background: @xtxColor;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    p {
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: rgba(0,0,0,0.2);
+      color: #fff;
+      font-size: 18px;
+      text-align: center;
+      line-height: 60px;
+      opacity: 1;
+      transition: all .5s;
+      width: 100%;
+    }
+  }
+}
